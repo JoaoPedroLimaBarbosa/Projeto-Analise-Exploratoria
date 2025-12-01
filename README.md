@@ -33,7 +33,7 @@ Focado em compreender o comportamento logístico e comercial do comércio eletr�
 
 ---
 
-## � Descrição do Processo de Tratamento dos Dados
+##  Descrição do Processo de Tratamento dos Dados
 
 ### 1. Análise Inicial
 - Contagem de linhas e colunas  
