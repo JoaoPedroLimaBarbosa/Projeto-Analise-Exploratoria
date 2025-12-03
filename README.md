@@ -1,141 +1,69 @@
-#  README — Projeto de Análise Exploratória e Pré-Processamento dos Dados da Olist
-
----
-
-##  Integrantes do Grupo
-- **João Pedro Lima Barbosa**
-- **Rodofo Dheymison Ferreira Silva**
-
----
-
-##  Base de Dados Utilizada
-Os dados utilizados fazem parte do **Brazilian E-Commerce Public Dataset by Olist**, disponível em:
-
-https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
-
-Datasets utilizados:
-- `olist_orders_dataset.csv`
-- `olist_order_items_dataset.csv`
-- `olist_products_dataset.csv`
-
----
-
-##  Objetivo do Projeto
-Este projeto tem como objetivo aplicar um processo completo de:
-
-- Análise Exploratória de Dados (EDA)
-- Tratamento e limpeza
-- Normalização e codificação
-- Criação de novos atributos (Feature Engineering)
-- Construção de um dataset final pronto para análise
-
-Focado em compreender o comportamento logístico e comercial do comércio eletrônico da Olist.
-
----
-
-##  Descrição do Processo de Tratamento dos Dados
-
-### 1. Análise Inicial
-- Contagem de linhas e colunas  
-- Visualização de amostras iniciais (head)  
-- Verificação dos tipos de dados  
-- Identificação de valores ausentes  
-- Detecção de inconsistências e outliers  
-
----
-
-### 2. Limpeza dos Dados
-- Preenchimento de valores ausentes em datas, categorias e dimensões  
-- Correção de inconsistências nos nomes das colunas  
-- Padronização de textos (lowercase e remoção de espaços)  
-- Remoção ou correção de categorias inválidas  
-- Tratamento de outliers utilizando o método IQR (capping)  
-
----
-
-### 3. Conversão e Padronização de Tipos
-- Conversão de colunas de data para `datetime`  
-- Padronização de IDs como `string`  
-- Ajustes em tipos numéricos  
-
----
-
-### 4. Codificação de Variáveis Categóricas
-- **Label Encoding** → `product_category_name`  
-- **One-Hot Encoding** → `order_status`  
-
----
-
-### 5. Normalização
-Aplicação de **MinMaxScaler** nas colunas:
-- `price`
-- `freight_value`
-
----
-
-### 6. Feature Engineering
-Criação de 7 novos atributos:
-
-- `tempo_entrega`  
-- `dias_processamento`  
-- `atraso_entrega`  
-- `valor_total_item`  
-- `percentual_frete`  
-- `volume_cm3`  
-- `quantidade_itens_pedido`  
-
----
-
-### 7. Seleção de Atributos
-- Matriz de correlação  
-- Análise de variância com `VarianceThreshold`  
-- Identificação de atributos redundantes  
-
----
-
-### 8. EDA — Análise Exploratória dos Dados
-Gráficos incluídos no projeto:
-
-- Distribuição de preços  
-- Distribuição de frete  
-- Categorias mais vendidas  
-- Tempo de entrega  
-- Atrasos de entrega  
-- Volume dos produtos  
-- Correlação entre variáveis  
-- Evolução mensal de pedidos  
-
----
-
-### 9. Exportação do Dataset Final
-O dataset final tratado foi salvo como:
-
-```
-dataset_final_tratado.csv
-```
-
----
-
-##  Principais Desafios Encontrados
-- Alto volume de valores ausentes em colunas importantes  
-- Inconsistências de nomenclatura no dataset original  
-- Grande número de categorias únicas para produtos  
-- Outliers extremos em preço, frete e dimensões  
-- Necessidade de unir três datasets em um único  
-- Datas invertidas e atrasos negativos  
-- Ajustes de padronização de tipos e categorias  
-
----
-
-##  Principais Conclusões
-
-- Frete e preço apresentam correlação importante, principalmente em itens volumosos  
-- Tempo de entrega varia bastante, influenciando atrasos  
-- Muitos pedidos são entregues antes do prazo  
-- Categorias mais vendidas não são as mais caras  
-- O volume do produto impacta diretamente o valor do frete  
-- O ciclo compra → aprovação → envio → entrega mostra gargalos logísticos  
-- O dataset final ficou totalmente limpo, padronizado e enriquecido com novas features  
-
----
-
+📘 README — Projeto de Análise Exploratória e Pré-Processamento dos Dados da Olist
+👥 Integrantes do Grupo
+João Pedro Lima Barbosa
+Rodolfo Dheymison Ferreira Silva
+🔗 Base de Dados Utilizada
+Os dados utilizados pertencem ao Brazilian E-Commerce Public Dataset by Olist, disponível em:
+➡ https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce
+Datasets usados no projeto:
+olist_orders_dataset.csv
+olist_order_items_dataset.csv
+olist_products_dataset.csv
+🎯 Objetivo do Projeto
+Aplicar um processo completo de análise exploratória (EDA) e pré-processamento de dados, incluindo:
+investigação e compreensão dos datasets
+identificação e tratamento de problemas
+criação de novos atributos
+análise gráfica
+preparação dos dados para futuras etapas de modelagem
+O objetivo final é entender o comportamento dos pedidos da Olist e seus fatores logísticos, além de gerar insights úteis sobre atrasos, preços, categorias e fretes.
+🧹 Descrição do Processo de Tratamento dos Dados
+✔ 1. Análise de valores ausentes
+Preenchimento de datas com moda (quando aplicável).
+Remoção de colunas irrelevantes com excesso de nulos.
+Imputação de valores numéricos com mediana.
+✔ 2. Duplicatas
+Verificação em todos os datasets.
+Nenhuma duplicata exata encontrada.
+✔ 3. Inconsistências
+Foram detectados e tratados:
+pesos e dimensões impossíveis
+fretes incompatíveis
+categorias duplicadas ou incoerentes
+preços fora de padrão
+✔ 4. Outliers
+Métodos utilizados:
+IQR
+análise visual com histogramas e boxplots
+Tratamento:
+remoção de valores impossíveis
+cap para valores exagerados porém possíveis
+✔ 5. Conversão de tipos
+Datas convertidas para datetime
+Colunas numéricas padronizadas
+Textos normalizados (case/acentos)
+✔ 6. Codificação e Normalização
+Label Encoding para categorias maiores
+One-Hot Encoding para categorias menores
+MinMaxScaler e Z-Score aplicados conforme distribuição das variáveis
+✔ 7. Feature Engineering
+Foram criadas novas variáveis como:
+tempo de entrega
+atraso de entrega
+valor total do item
+ano/mês da compra
+volume do produto
+🚧 Principais Desafios Encontrados
+forte presença de outliers financeiros e logísticos
+inúmeras inconsistências nas dimensões/dados de produtos
+categorias pouco padronizadas
+necessidade de sincronizar datas entre datasets
+junção dos três arquivos para criar um dataset único coerente
+diversas colunas com dados faltantes de forma irregular
+pesos e medidas que exigiram validação direta para evitar distorções
+📌 Principais Conclusões
+Fretes altos possuem forte relação com dimensões e distância do cliente.
+Algumas categorias apresentam mais atrasos e valores mais extremos.
+A limpeza dos dados corrigiu distorções significativas nas distribuições, tornando a análise mais confiável.
+A criação de variáveis derivadas (como tempo e atraso de entrega) mostrou padrões logísticos importantes.
+O conjunto final está mais consistente, padronizado e ideal para futuras análises preditivas.
